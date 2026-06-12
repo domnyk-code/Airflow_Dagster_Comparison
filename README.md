@@ -62,23 +62,23 @@ Link to data: https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page
 
 Each record in the dataset describes a single taxi trip registered by the carrier operating the vehicle. Each record contains the following fields:
 
-    VendorID – Numeric identifier of the carrier.
-    tpep_pickup_datetime – Date and time the trip started.
-    tpep_dropoff_datetime – Date and time the trip ended.
-    passenger_count – Number of passengers on the trip.
-    trip_distance – Length of the trip (in miles).
-    RatecodeID – Numeric identifier of the fare calculation method.
-    store_and_fwd – Flag indicating whether trip data was sent to the carrier immediately or stored in the vehicle's memory first.
-    PULocationID – Numeric identifier of the trip's pickup location.
-    DOLocationID – Numeric identifier of the trip's drop-off location.
-    payment_type – Numeric identifier of the payment method.
-    fare_amount – Base fare for the trip (in dollars and cents).
-    extra – Any additional charges (in dollars and cents).
-    mta_tax – Tax amount calculated based on the applicable fare standard.
-    tip_amount – Tip amount. Only tips paid by card are counted.
-    tolls_amount – Total toll charges during the trip.
-    total_amount – Sum of all charges and tips.
-    congestion_surcharge – Additional surcharge for trips during peak hours.
+- **VendorID** – Numeric identifier of the carrier.
+- **tpep_pickup_datetime** – Date and time the trip started.
+- **tpep_dropoff_datetime** – Date and time the trip ended.
+- **passenger_count** – Number of passengers on the trip.
+- **trip_distance** – Length of the trip (in miles).
+- **RatecodeID** – Numeric identifier of the fare calculation method.
+- **store_and_fwd** – Flag indicating whether trip data was sent to the carrier immediately or stored in the vehicle's memory first.
+- **PULocationID** – Numeric identifier of the trip's pickup location.
+- **DOLocationID** – Numeric identifier of the trip's drop-off location.
+- **payment_type** – Numeric identifier of the payment method.
+- **fare_amount** – Base fare for the trip (in dollars and cents).
+- **extra** – Any additional charges (in dollars and cents).
+- **mta_tax** – Tax amount calculated based on the applicable fare standard.
+- **tip_amount** – Tip amount. Only tips paid by card are counted.
+- **tolls_amount** – Total toll charges during the trip.
+- **total_amount** – Sum of all charges and tips.
+- **congestion_surcharge** – Additional surcharge for trips during peak hours. 
 
 The data is divided by year, and each year is further divided by month, meaning there are twelve datasets per year.
 
