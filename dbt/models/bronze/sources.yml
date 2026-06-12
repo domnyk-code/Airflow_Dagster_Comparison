@@ -1,0 +1,7 @@
+sources:
+  - name: raw
+    schema: raw
+    description: "Raw tables loaded by the ingestion step (bronze layer source)"
+    tables:
+      - name: taxi_trips
+        description: "Raw table of taxi trips"

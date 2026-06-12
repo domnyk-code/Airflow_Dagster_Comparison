@@ -1,0 +1,60 @@
+# Tests for data quality
+models:
+  - name: taxi_gold_daily_analysis
+    description: "Aggregated daily NYC Taxi trips"
+    columns:
+      - name: date
+        data_tests:
+          - not_null
+          - unique
+      - name: total_trips
+        data_tests:
+          - not_null
+      - name: total_fares
+        data_tests:
+          - not_null
+
+  - name: taxi_gold_invalid_passenger
+    description: "Highlighted records with invalid characteristics"
+    columns:
+      - name: trip_distance
+        data_tests:
+          - not_null
+      - name: total_amount # We need to check all the financial columns for errors
+        data_tests:
+          - not_null
+      - name: fare_amount
+        data_tests:
+          - not_null
+      - name: extra
+        data_tests:
+          - not_null
+      - name: tip_amount
+        data_tests:
+          - not_null
+      - name: tolls_amount
+        data_tests:
+          - not_null
+      - name: congestion_surcharge
+        data_tests:
+          - not_null
+      - name: passenger_count
+        data_tests:
+          - not_null
+
+  - name: taxi_gold_vendor_analysis
+    description: "Aggregated vendor comparison table"
+    columns:
+      - name: vendor_id
+        data_tests:
+          - not_null
+          - unique
+      - name: total_trips
+        data_tests:
+          - not_null
+      - name: avg_fare
+        data_tests:
+          - not_null
+      - name: avg_revenue
+        data_tests:
+          - not_null

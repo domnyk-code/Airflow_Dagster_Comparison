@@ -1,0 +1,73 @@
+services:
+
+  data-postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: medallion_db
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      retries: 5
+    volumes:
+      - data-pg-data:/var/lib/postgresql/data
+
+  dagster-postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: dagster
+      POSTGRES_PASSWORD: dagster
+      POSTGRES_DB: dagster
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "dagster"]
+      interval: 10s
+      retries: 5
+    volumes:
+      - dagster-pg-data:/var/lib/postgresql/data
+
+  dagster-daemon:
+    build: .
+    command: dagster-daemon run
+    environment: &dagster-env
+      DAGSTER_POSTGRES_USER: dagster
+      DAGSTER_POSTGRES_PASSWORD: dagster
+      DAGSTER_POSTGRES_DB: dagster
+      DAGSTER_POSTGRES_HOST: dagster-postgres
+      DBT_HOST: data-postgres
+      DBT_USER: postgres
+      DBT_PASSWORD: postgres
+      DBT_DBNAME: medallion_db
+      SOURCE_DATA_PATH: /opt/dagster/data/
+      DBT_PROJECT_PATH: /opt/dagster/dbt/medallion
+    volumes:
+      - ./:/opt/dagster/app
+      - ../dbt:/opt/dagster/dbt/medallion
+      - ../data:/opt/dagster/data
+    depends_on:
+      dagster-postgres:
+        condition: service_healthy
+      data-postgres:
+        condition: service_healthy
+
+  dagster-webserver:
+    build: .
+    command: dagster-webserver -h 0.0.0.0 -p 3000
+    environment: *dagster-env
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/opt/dagster/app
+      - ../dbt:/opt/dagster/dbt/medallion
+      - ../data:/opt/dagster/data
+    depends_on:
+      dagster-postgres:
+        condition: service_healthy
+      data-postgres:
+        condition: service_healthy
+
+volumes:
+  data-pg-data:
+  dagster-pg-data:

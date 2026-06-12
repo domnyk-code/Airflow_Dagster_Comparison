@@ -1,0 +1,24 @@
+name: airflow_dagster_comp
+version: "1.0.0"
+config-version: 2
+
+profile: airflow_dagster
+
+model-paths: ["models"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  airflow_dagster_comp:
+    bronze:
+      +materialized: incremental
+      +schema: bronze
+    silver:
+      +materialized: incremental
+      +schema: silver
+    gold:
+      +materialized: table
+      +schema: gold

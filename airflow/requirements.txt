@@ -1,0 +1,4 @@
+# Data loading
+pandas
+sqlalchemy
+psycopg2-binary

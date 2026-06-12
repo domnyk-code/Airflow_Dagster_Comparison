@@ -1,0 +1,7 @@
+models:
+  - name: taxi_bronze
+    description: "Faithful copy of raw orders with ingestion metadata"
+    columns:
+      - name: tpep_pickup_datetime
+        data_tests:
+          - not_null

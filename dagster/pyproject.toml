@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.backends.legacy:BuildBackend"
+
+[project]
+name = "medallion_dagster"
+version = "0.1.0"
+description = "Medallion architecture pipeline orchestrated with Dagster"
+requires-python = ">=3.11"
+
+dependencies = [
+    # Dagster core
+    "dagster==1.7.9",
+    "dagster-webserver==1.7.9",
+
+    # DBT integration (reads manifest, streams events back to Dagster)
+    "dagster-dbt==0.23.9",
+
+    # DBT itself + Postgres adapter
+    "dbt-postgres",
+
+    # Data loading
+    "pandas==2.2.2",
+    "sqlalchemy==1.4.52",
+    "psycopg2-binary==2.9.9",
+    "tabulate",              # for df.to_markdown() in asset metadata preview
+]
+
+[tool.dagster]
+# Tells `dagster dev` where to find the Definitions object
+module_name = "definitions"

@@ -1,0 +1,11 @@
+airflow_dagster:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: data-postgres
+      user: airflow
+      password: airflow
+      port: 5432
+      dbname: medallion_db
+      schema: analytics
