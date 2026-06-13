@@ -84,8 +84,6 @@ The data is divided by year, and each year is further divided by month, meaning 
 
 ---
 
----
-
 ## Data Flow Diagram
 ![Data pipeline diagram extended](/images/pipeline_diagram_en.png)
 
