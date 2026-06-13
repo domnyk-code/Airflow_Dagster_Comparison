@@ -54,6 +54,8 @@ gold layer    (dbt: taxi_gold)   ← business aggregates
 
 ---
 
+---
+
 ## Data Source
 
 The pipeline expects the **NYC TLC Yellow Taxi Trips** dataset at `data/`, in parquet format.
